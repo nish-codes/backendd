@@ -12,7 +12,7 @@ router.get('/google-signin', (req, res) => {
 
 router.post('/google-signin', async (req, res) => {
     try {
-        const { name, email, profilePic } = req.body;
+        const { name, email, profilePic,role } = req.body;
 
         if (!email) {
             return res.status(400).send('Email is required');
@@ -25,7 +25,8 @@ router.post('/google-signin', async (req, res) => {
                 name,
                 email,
                 profilePic,
-                authProvider: 'google'
+                authProvider: 'google',
+                role
             });
             await user.save();
         }

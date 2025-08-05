@@ -1,20 +1,32 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { connectDb } from './db/index.js';
-import authRoutes from './auth/auth.js'; // ✅ Import route
+import authRoutes from './auth/auth.js';
+import profileRoutes from './profile/profile.js'; // ✅ Add this
+import quizRoutes from './quiz/quiz.js'; // ✅ Add this
+import resumeRoutes from './resume/resume.js'; // ✅ Add this
+import InternshipRoutes from './Internship/Internship.js'; // ✅ Add this
+import ApplicationRoutes from './application/application.js'; // ✅ Add this
+import HackathonRoutes from './Hackathon/Hackathon.js'; // ✅ Add this
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-// Connect to DB
+// Connect DB
 connectDb();
 
-// Use the auth route
-app.use('/api/auth', authRoutes); // ✅ Now /api/auth/google-signin works
+// Mount routes
+app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes); // ✅ Now accessible via /api/profile/create
+app.use('/api/quiz', quizRoutes); 
+app.use('/api/resume', resumeRoutes); 
+app.use('/api/internship', InternshipRoutes); 
+app.use('/api/application', ApplicationRoutes); 
+app.use('/api/hackathon', HackathonRoutes); 
 
-// Default route
+// Test route
 app.get('/', (req, res) => res.send('API is running'));
 
 // Start server

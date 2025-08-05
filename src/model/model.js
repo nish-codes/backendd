@@ -34,6 +34,8 @@ const quizResultSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
+//creating
+
 export const QuizResult = mongoose.model('QuizResult', quizResultSchema);
 
 // models/Resume.js
